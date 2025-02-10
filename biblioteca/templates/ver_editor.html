@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Editor - {{ editor.nombre }} {% endblock %}
+
+{% block content %}
+    <h1>{{ editor.nombre }}</h1>
+    <h2>Domicilio: {{ editor.domicilio }}</h2>
+    <h2>Ciudad: {{ editor.ciudad }}</h2>
+    <h2>Estado: {{ editor.estado }}</h2>
+    <h2>País: {{ editor.pais }}</h2>
+    <h2>Sitio web: <h2 style="color:blue; font-style: unset">{{ editor.website }}</h2></h2>
+{% endblock %}

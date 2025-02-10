@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Listado de autores {% endblock %}
+
+{% block content %}
+    <h1>Listado de autores</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Nombre completo</td>
+                <td>Correo Electronico</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if autores %}
+                {% for autor in autores %}
+                    <tr>
+                        <td>{{ autor.id }}</td>
+                        <td>{{ autor.nombre }} {{ autor.apellidos }}</td>
+                        <td>{{ autor.email }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'ver_autor' autor.id %}" style="margin: 1px;"> Ver (view) </a>
+                            <a class="btn btn-primary" href="{% url 'editar_autor' autor.id %}" style="margin: 1px;"> Editar (view) </a>
+                            <a class="btn btn-danger" href="{% url 'eliminar_autor' autor.id %}" style="margin: 1px;"> Eliminar (view)</a>
+                            <br>
+                            <a class="btn btn-warning" href="{% url 'ver_class_autor' autor.id %}" style="margin: 1px;"> Ver (class) </a>
+                            <a class="btn btn-primary" href="{% url 'editar_class_autor' autor.id %}" style="margin: 1px;"> Editar (class) </a>
+                            <a class="btn btn-danger" href="{% url 'eliminar_class_autor' autor.id %}" style="margin: 1px;"> Eliminar (class)</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay autores registrados</h1>
+            {% endif %}
+
+        </tbody>
+    </table>
+{% endblock %}

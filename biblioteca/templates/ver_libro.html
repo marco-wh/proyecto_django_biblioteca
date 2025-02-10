@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Libro - {{ object.titulo }} {% endblock %}
+
+{% block content %}
+    <h1>{{ object.titulo }}</h1>
+
+    <img src="{% if object.portada %}{{ object.portada.url }}{% endif %}" width="150", height="200">
+    <h2>Autores: {% for a in object.autores.all %}
+        {{ a.nombre }} {{ a.apellidos }}
+        {% if not forloop.last %},{% endif %}
+    {% endfor %}</h2>
+    <h2>Editor: {{ object.editor }}</h2>
+    <h2>Fecha de publicación: {{ object.fecha_publicacion }}</h2>
+{% endblock %}

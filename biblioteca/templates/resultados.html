@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados de Busqueda</title>
+</head>
+<body>
+    <p>Estas buscando: <strong>{{ query }}</strong></p>
+
+    {% if libros %}
+        <p>Libros encontrados: {{ libros|length }} libro{{ libros|pluralize }}.</p>
+        <ul>
+            {% for libro in libros %}
+                <li>{{ libro.titulo }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ningun libro coincide con el criterio de busqueda</p>
+    {% endif %}
+</body>
+</html>

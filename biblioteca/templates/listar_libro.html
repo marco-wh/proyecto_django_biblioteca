@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} Listado de Libros {% endblock %}
+
+{% block content %}
+    <h1>Listado de Libros</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Portada</td>
+                <td>Título</td>
+                <td>Autores</td>
+                <td>Editor</td>
+                <td>Fecha de publicación</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if libros %}
+                {% for libro in libros %}
+                    <tr>
+                        <td>{{ libro.id }}</td>
+                        <td>
+                            {% if libro.portada %}
+                                <img src="{{ libro.portada.url }}" width="130" height="180">
+                            {% endif %}
+                        </td>
+                        <td>{{ libro.titulo }}</td>
+                        <td>
+                            {% for autor in libro.autores.all %}
+                                {{ autor.nombre }} {{ autor.apellidos }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{ libro.editor }}</td>
+                        <td>{{ libro.fecha_publicacion }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'ver_libro' libro.id %}" style="margin: 1px;"> Ver (view) </a>
+                            <a class="btn btn-primary" href="{% url 'editar_libro' libro.id %}" style="margin: 1px;"> Editar (view) </a>
+                            <a class="btn btn-danger" href="{% url 'eliminar_libro' libro.id %}" style="margin: 1px;"> Eliminar (view)</a>
+                            <br><br>
+                            <a class="btn btn-warning" href="{% url 'ver_class_libro' libro.id %}" style="margin: 1px;"> Ver (class) </a>
+                            <a class="btn btn-primary" href="{% url 'editar_class_libro' libro.id %}" style="margin: 1px;"> Editar (class) </a>
+                            <a class="btn btn-danger" href="{% url 'eliminar_class_libro' libro.id %}" style="margin: 1px;"> Eliminar (class)</a>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay libros registrados</h1>
+            {% endif %}
+
+        </tbody>
+    </table>
+{% endblock %}

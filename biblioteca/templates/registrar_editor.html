@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Registrar Editor {% endblock %}
+<head>
+    <style>
+        ul.errorlist{
+            margin: 0;
+            padding: 0;
+        }
+
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+</head>
+
+{% block content %}
+    <h1>Registra un editor</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table}}
+        </table>
+        <input type="submit" value="Registrar Editor">
+    </form>
+
+
+{% endblock %}

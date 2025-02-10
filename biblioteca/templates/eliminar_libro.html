@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar {{ libro.titulo }}{% endblock %}
+
+{% block content %}
+    <h1>¿Deseas eliminar {{ libro.titulo }}?</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <button type="btn btn-danger">Si, Borrar</button>
+        <a type="btn btn-default" href="{% url 'listar_libro' %}">No, Cancelar</a>
+    </form>
+{% endblock %}
